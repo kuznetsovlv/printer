@@ -43,6 +43,8 @@
 		    fileList = [];
 		while (path = lio.pathList.getLine(i++)) {
 			path = p.normalize(path);
+			if (!fs.existsSync(path))
+				continue;
 			var stat = fs.statSync(path);
 			if (stat.isDirectory())
 				fileList = fileList.concat(getFiles(path));
