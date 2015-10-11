@@ -43,7 +43,11 @@
 		    fileList = [];
 		while (path = lio.pathList.getLine(i++)) {
 			path = p.normalize(path);
-			fileList = fileList.concat(getFiles(path))
+			var stat = fs.statSync(path);
+			if (stat.isDirectory())
+				fileList = fileList.concat(getFiles(path));
+			else if (stat.isFile())
+				fileList.push(path);
 		}
 		path = fileList[Math.floor(Math.random() * fileList.length)];
 		var spawn = child_process.spawn,
