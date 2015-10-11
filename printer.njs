@@ -53,7 +53,14 @@
 		var spawn = child_process.spawn,
 		    lp = spawn('lp', [path, '-o landscape']);
 		lp.stderr.on('data', function (data) {
-			console.log(data);
+			var error = require('./modules/lio.njs').getLIO({
+			    	name: 'error',
+			    	path: p.normalize(p.join(pwd, 'error.log')),
+			    	type: 'output'
+			    }).error;
+			error.printLine(new Date().getTime());
+			for (var key in data)
+				error.prinLine([key, data[key]].join(': '));
 		});
 		lio.wlast.printLine(new Date().getTime());
 	}
