@@ -138,7 +138,7 @@
 								}
 							});
 						} else {
-							if(stats.isFile() && {gif: 1, png: 1, jpeg: 1, jpg: 1}[path.extname(p).substr(1)]);
+							if(stats.isFile() && {gif: 1, png: 1, jpeg: 1, jpg: 1}[path.extname(p).substr(1).toLowerCase()]);
 								files.push(p);
 							_createFileList(pathes);
 						}
