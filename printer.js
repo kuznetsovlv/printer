@@ -191,8 +191,7 @@
 							if (bytesRead === SIZE) {
 								_findLastDate (pos + bytesRead);
 							} else {
-								line = line.split(':')[0];
-								
+								line = line.split(':').slice(0, 3).join(':');
 								if ((new Date().getTime() - __toHour(new Date(line || 0).getTime())) / (1000 * 60 * 60 * 24) >= 7)
 									print(name);
 							}
